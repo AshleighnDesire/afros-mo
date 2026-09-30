@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Afros & Mo. — Photo Showcase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="stage" id="stage">
+  <div class="mark">Afros &amp; Mo.</div>
+    <div id="view" class="view"></div>
+  <div class="navzones"><button id="zPrev" aria-label="Previous"></button><button id="zNext" aria-label="Next"></button></div>
+    <div class="hud">
+    <button class="skip" id="prevSvc" title="Previous service">⟪</button>
+    <button id="prevStep" aria-label="Back">‹</button>
+    <div class="info"><span id="svcLabel"></span><span id="phaseLabel"></span></div>
+    <button id="nextStep" aria-label="Forward">›</button>
+    <button class="skip" id="nextSvc" title="Next service">⟫</button>
+  </div>
+  <form class="jump" id="jumpForm"><label for="jumpInput">Go to</label><input id="jumpInput" type="number" min="1" placeholder="#"></form>
+  <button class="playbtn" id="play">❚❚</button>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
