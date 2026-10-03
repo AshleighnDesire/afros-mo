@@ -7,8 +7,16 @@
 /* that isn't found in /images simply falls back to a placeholder panel.      */
 /* Welcome-page background photo. Put your picture in the images folder with this name (or change the name). If the file is missing, the welcome page stays plain white. */
 const WELCOME_BG='images/welcome.jpg';
+
 /* Loop the whole show forever (true) or stop on the closing screen (false). */
 const LOOP=true;
+
+/* Logo shown in the top-right corner of every screen. Save your logo as images/logo.png (a transparent PNG works best), or change the name here. If the file is missing, the text "Afros & Mo." is shown instead. */
+const LOGO='images/logo.png';
+
+/* Closing screen video: plays at the end of the show in place of the closing card. Save it as images/outro.mp4 (H.264 MP4), or change the name. Set to '' to use the plain "Afros & Mo." closing card instead. If the file is missing, the card is shown automatically. */
+const VIDEO='images/outro.mp4';
+let videoFailed=false;const useVid=()=>!!VIDEO&&!videoFailed;
 
 const SERVICES_SEED = [
   { name: "Bohemian Body Curl Singles",            images: ["BBCS1.jpg","BBCS2.jpg","BBCS3.jpg"] },
@@ -16,7 +24,7 @@ const SERVICES_SEED = [
   { name: "Boho Passion Twists",             images: ["BPT1.jpg","BPT2.jpg","BPT3.jpg"] },
   { name: "Bohemian Twists",           images: ["BTWIST1.jpg","BTWIST2.jpg","BTWIST3.jpg"] },
   { name: "Coco Twists",   images: ["coco1.jpg","coco2.jpg","coco3.jpg"] },
-  { name: "Indie Curl Braids",     images: ["ICB1.jpeg","ICB2.jpeg","ICB3.jpeg"] },
+  { name: "Indie Curl Braids",     images: ["ICB1.jpg","ICB2.jpg","ICB3.jpg"] },
   { name: "Knotless Jamaican Curl",         images: ["KJC1.jpg","KJC2.jpg"] },
   { name: "Knotless Braids with curls",     images: ["KNT1.jpg","KNT2.jpg","KNT3.jpg","KNT4.jpg"] },
   { name: "Pencil Braids",         images: ["KP1.jpg","KP2.jpg","KP3.jpg"] },
@@ -25,7 +33,7 @@ const SERVICES_SEED = [
   { name: "Mini Knotless PonyTail Braids",     images: ["MKPTB1.jpg","MKPTB2.jpg","MKPTB3.jpg","MKPTB4.jpg"] },
   { name: "Nubi Ultra Braids",     images: ["NUBI_U1.jpg","NUBI_U2.jpg","NUBI_U3.jpg"] },
   { name: "Ombre Passion Twists",     images: ["OPT1.jpg","OPT2.jpg","OPT3.jpg"] },
-  { name: "Premium Dreads 14 Inches",     images: ["PDBS1.png","PDBS2.png","PDBS3.png"] },
+  { name: "Premium Dreads 14 Inches",     images: ["PDBS1.jpg","PDBS2.jpg","PDBS3.jpg"] },
   { name: "Premium Dreads Big 18 Inches",     images: ["PDBL1.jpg","PDBL2.jpg","PDBL3.jpg"] },
   { name: "Invisible Twists",     images: ["precious1.jpg","precious2.jpg","precious3.jpg"] },
   { name: "Reverse / 3D Twists",     images: ["RT1.jpg","RT2.jpg","RT3.jpg","RT4.jpg"] },
@@ -35,24 +43,24 @@ const SERVICES_SEED = [
   { name: "Afro Puffy Textured Curls",     images: ["Puffy1.jpg","Puffy2.jpg","Puffy3.jpg"] },
   { name: "Bohemian Body Curl",     images: ["BBCC1.jpg","BBCC2.jpg","BBCC3.jpg","BBCC4.jpg"] },
   { name: "Carribean Deep Wave",     images: ["CDW1.jpg","CDW2.jpg","CDW3.jpg"] },
-  { name: "Island Curl",     images: ["IC1.jpeg","IC2.jpeg","IC3.jpeg"] },
+  { name: "Island Curl",     images: ["IC1.jpg","IC2.jpg","IC3.jpg"] },
   { name: "Jamaican Curls Long",     images: ["JCL1.jpg","JCL2.jpg","JCL3.jpg"] },
-  { name: "Jamaican Curls Short",     images: ["JCS1.jpeg","JCS2.jpeg","JCS3.jpeg"] },
-  { name: "Kinky Crochet Long",     images: ["KCL1.jpeg","KCL2.jpeg","KCL3.jpeg"] },
+  { name: "Jamaican Curls Short",     images: ["JCS1.jpg","JCS2.jpg","JCS3.jpg"] },
+  { name: "Kinky Crochet Long",     images: ["KCL1.jpg","KCL2.jpg","KCL3.jpg"] },
   { name: "Kinky Crochet Short",     images: ["KCS1.jpg","KCS2.jpg","KCS3.jpg","KCS4.jpg","KCS5.jpg","KCS6.jpg"] },
   { name: "Kinky Curl",     images: ["KC1.jpg","KC2.jpg","KC3.jpg"] },
   { name: "Kinky Curl Short",     images: ["KCC1.jpg","KCC2.jpg","KCC3.jpg"] },
-  { name: "Marley Short",     images: ["MS1.jpg","MS2.jpeg","MS3.jpeg"] },
-  { name: "Marley Long",     images: ["ML1.jpeg","ML2.jpeg"] },
+  { name: "Marley Short",     images: ["MS1.jpg","MS2.jpg","MS3.jpg"] },
+  { name: "Marley Long",     images: ["MLL1.jpg","MLL2.jpg"] },
   { name: "Mini Body Curl",     images: ["MBC1.jpg","MBC2.jpg","MBC3.jpg","MBC4.jpg"] },
   { name: "Mini Afro Bulk Premade",     images: ["MBP1.jpg","MBP2.jpg","MBP3.jpg","MBP4.jpg","MBP5.jpg","MBP6.jpg","MBP7.jpg"] },
-  { name: "Mini Spring Twists",     images: ["MST1.jpg","MST2.jpg","MST3.jpeg"] },
+  { name: "Mini Spring Twists",     images: ["MST1.jpg","MST2.jpg","MST3.jpg"] },
   { name: "Morrocan Twists Long",     images: ["MTSL1.jpg","MTSL2.jpg","MTSL3.jpg","MTSL4.jpg","MTSL5.jpg","MTSL6.jpg"] },
-  { name: "Morrocan Twists Short",     images: ["MTSS1.jpg","MTSS2.jpg","MTSS3.jpg","MTSS4.jpeg","MTSS5.jpeg","MTSS6.jpeg"] },
-  { name: "Patwa Twists",     images: ["PT1.jpg","PT2.jpg","PT3.jpg","PT4.jpg","PT5.jpg","PT6.jpg","PT7.jpg","PT8.jpg","PT9.jpg","PT10.jpg","PT11.jpg","PT12.jpg"] },
+  { name: "Morrocan Twists Short",     images: ["MTSS1.jpg","MTSS2.jpg","MTSS3.jpg","MTSS4.jpg","MTSS5.jpg","MTSS6.jpg"] },
+  { name: "Patwa Twists",     images: ["PT1.jpg","PT2.jpg","PT3.jpg","PT4.jpg","PT5.jpg","PT6.jpg","PT7.jpg","PT8.jpg","PT9.jpg","PT10.jpg","PT11.jpg"] },
   { name: "Sponge Coils",     images: ["SPONGE1.jpg","SPONGE2.jpg","SPONGE3.jpg"] },
   { name: "Spring Twists Afro Mohwak",     images: ["SPM1.jpg","SPM2.jpg"] },
-  { name: "Waterwave",     images: ["WW1.jpeg","WW2.jpeg","WW3.jpeg"] },
+  { name: "Waterwave",     images: ["WW1.jpg","WW2.jpg","WW3.jpg"] },
   { name: "Yanky Twists",     images: ["YT1.jpg","YT2.jpg","YT3.jpg","YT4.jpg","YT5.jpg","YT6.jpg","YT7.jpg","YT8.jpg"] },
   { name: "Cornrows With Ponytail",     images: ["CWP1.jpg","CWP2.jpg","CWP3.jpg"] },
   { name: "Indie Butterfly Locs Kids",     images: ["IBLK1.jpg","IBLK2.jpg","IBLK3.jpg","IBLK4.jpg"] },
@@ -75,9 +83,9 @@ const SERVICES_SEED = [
   { name: "Spiral Rodset",     images: ["SS1.jpg","SS2.jpg"] },
   { name: "Natural Spring Twists",     images: ["NST1.jpg","NST2.jpg","NST3.jpg"] },
   { name: "Micro Twists",     images: ["MT1.jpg","MT2.jpg","MT3.jpg"] },
-  { name: "Styling",     images: ["S1.png","S3.png","S4.jpg","S5.jpg","S6.jpg","S7.png","S8.png","S9.jpg","S10.jpg","S11.jpg","S12.jpg","S13.jpg","S14.jpg"] },
+  { name: "Styling",     images: ["S1.jpg","S3.jpg","S4.jpg","S5.jpg","S6.jpg","S7.jpg","S8.jpg","S9.jpg","S10.jpg","S11.jpg","S12.jpg","S13.jpg","S14.jpg"] },
   { name: "Bridal Styling",     images: ["B1.jpg","B2.jpg","B3.jpg","B4.jpg","B5.jpg","B6.jpg"] },
-  { name: "Shingling",     images: ["SHIN1.png","SHIN2.png","SHIN3.png"] },
+  { name: "Shingling",     images: ["SHIN1.jpg","SHIN2.jpg","SHIN3.jpg"] },
 ];
 const SERVICES = SERVICES_SEED.slice();
 /*for (let n = SERVICES.length + 1; n <= 63; n++) {
@@ -87,7 +95,7 @@ const SERVICES = SERVICES_SEED.slice();
 
 
 const stage=document.getElementById('stage'),view=document.getElementById('view'),
-svcLabel=document.getElementById('svcLabel'),phaseLabel=document.getElementById('phaseLabel'),playBtn=document.getElementById('play');
+svcLabel=document.getElementById('svcLabel'),phaseLabel=document.getElementById('phaseLabel'),playBtn=document.getElementById('play'),mark=document.querySelector('.mark');
 const TIMELINE=[{type:'intro'}],serviceStart=[];
 SERVICES.forEach((svc,s)=>{serviceStart[s]=TIMELINE.length;TIMELINE.push({type:'service',s,f:null});svc.images.forEach((_,f)=>TIMELINE.push({type:'service',s,f}));});
 const CLOSING=TIMELINE.length;TIMELINE.push({type:'closing'});
@@ -146,8 +154,37 @@ function layout(svc,f){
   });
   stage.classList.toggle('dark',f!==null);
 }
+function setLogo(){
+  if(!mark)return;
+  if(!LOGO){mark.textContent='Afros & Mo.';return;}
+  const img=new Image();
+  img.onload=()=>{
+    mark.textContent='';
+    img.alt='Afros & Mo.';
+    img.className='logo';
+    mark.appendChild(img);
+  };
+  img.onerror=()=>{mark.textContent='Afros & Mo.';};
+  img.src=LOGO;
+}
+function syncClosingVideo(){
+  const video=view.querySelector('video');
+  if(!video)return;
+  if(playing){video.play().catch(()=>{});}else{video.pause();}
+}
 function panel(item){
   const c=item.type==='closing';
+  if(c&&useVid()){
+    view.innerHTML='<div class="panel video-panel"><video class="closing-video" autoplay muted playsinline loop src="'+VIDEO+'" aria-label="Afros & Mo. closing video"></video></div>';
+    const video=view.querySelector('video');
+    if(video){
+      video.onended=()=>{if(LOOP){go(0);} else {stage.classList.add('dark');}};
+      video.onerror=()=>{videoFailed=true;panel(item);};
+      syncClosingVideo();
+    }
+    stage.classList.add('dark');
+    return;
+  }
   view.innerHTML='<div class="panel'+(c?' dark':'')+'">'+(c?'<h1>Afros &amp; Mo.</h1><p>Natural hair care &amp; academy — Kampala</p>'
    :'<h1>Welcome to Afros &amp; Mo.</h1><p>Uganda\'s leading natural hair salon — '+SERVICES.length+' services, one showcase.</p>')+'</div>';
   stage.classList.toggle('dark',c);
@@ -181,15 +218,38 @@ function render(){
   kind=item.type;curSvc=item.type==='service'?item.s:-1;
 }
 function go(n){step=Math.max(0,Math.min(TIMELINE.length-1,n));render();reset();}
-const next=()=>{if(step<TIMELINE.length-1)go(step+1);else if(LOOP)go(0);},prev=()=>go(step-1);
-function nextSvc(){const c=TIMELINE[step],s=c.type==='service'?c.s+1:0;go(s<SERVICES.length?serviceStart[s]:CLOSING);}
-function prevSvc(){const c=TIMELINE[step],s=c.type==='service'?c.s-1:SERVICES.length-1;go(s>=0?serviceStart[s]:0);}
+function advanceBy(delta){
+  const target=step+delta;
+  if(target<0)return go(0);
+  if(target>=TIMELINE.length){
+    if(LOOP)return go(0);
+    return go(TIMELINE.length-1);
+  }
+  return go(target);
+}
+const next=()=>advanceBy(1),prev=()=>advanceBy(-1);
+function nextSvc(){
+  const c=TIMELINE[step],s=c.type==='service'?c.s+1:0;
+  if(s>=SERVICES.length){
+    if(LOOP)return go(0);
+    return go(CLOSING);
+  }
+  go(serviceStart[s]);
+}
+function prevSvc(){
+  const c=TIMELINE[step],s=c.type==='service'?c.s-1:SERVICES.length-1;
+  if(s<0){
+    if(LOOP)return go(CLOSING);
+    return go(0);
+  }
+  go(serviceStart[s]);
+}
 function reset(){clearTimeout(timer);if(!playing)return;const c=TIMELINE[step];
   timer=setTimeout(next,c.type==='service'&&c.f===null?3600:c.type==='service'?3200:4500);}
 document.getElementById('zNext').onclick=next;document.getElementById('zPrev').onclick=prev;
 document.getElementById('nextStep').onclick=next;document.getElementById('prevStep').onclick=prev;
 document.getElementById('nextSvc').onclick=nextSvc;document.getElementById('prevSvc').onclick=prevSvc;
-playBtn.onclick=()=>{playing=!playing;playBtn.textContent=playing?'❚❚':'▶';reset();};
+playBtn.onclick=()=>{playing=!playing;playBtn.textContent=playing?'❚❚':'▶';syncClosingVideo();reset();};
 document.getElementById('jumpForm').onsubmit=e=>{e.preventDefault();const n=parseInt(document.getElementById('jumpInput').value,10);if(n>=1&&n<=SERVICES.length)go(serviceStart[n-1]);};
 document.addEventListener('keydown',e=>{
   if(e.target.tagName==='INPUT')return;
@@ -197,4 +257,4 @@ document.addEventListener('keydown',e=>{
   if(e.key===' '){e.preventDefault();playBtn.click();}
   if(e.key==='f')document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();
 });
-render();reset();
+setLogo();render();reset();
