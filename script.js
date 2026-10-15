@@ -1,11 +1,4 @@
-/* ---------- EDIT HERE: your service catalogue ---------- */
-/* Each entry: { name: "Service name", images: ["file1.jpg","file2.jpg", ...] } */
-/* Add, remove, or reorder entries freely, and change how many photos a        */
-/* service has — the layout and navigation adapt to whatever is here.         */
-/* Put the actual photo files in the /images folder using these exact names.  */
-/* A service is still safe to show before its photos arrive: any filename     */
-/* that isn't found in /images simply falls back to a placeholder panel.      */
-/* Welcome-page background photo. Put your picture in the images folder with this name (or change the name). If the file is missing, the welcome page stays plain white. */
+
 const WELCOME_BG='images/welcome.jpg';
 
 /* Loop the whole show forever (true) or stop on the closing screen (false). */
@@ -186,7 +179,7 @@ function panel(item){
     return;
   }
   view.innerHTML='<div class="panel'+(c?' dark':'')+'">'+(c?'<h1>Afros &amp; Mo.</h1><p>Natural hair care &amp; academy — Kampala</p>'
-   :'<h1>Welcome to Afros &amp; Mo.</h1><p>Uganda\'s leading natural hair salon — '+SERVICES.length+' services, one showcase.</p>')+'</div>';
+   :'<h1>Welcome to Afros &amp; Mo.</h1><p>Uganda\'s leading natural hair salon.</p>')+'</div>';
   stage.classList.toggle('dark',c);
   if(!c&&WELCOME_BG){
     const im=new Image(),mine=step;
@@ -245,7 +238,7 @@ function prevSvc(){
   go(serviceStart[s]);
 }
 function reset(){clearTimeout(timer);if(!playing)return;const c=TIMELINE[step];
-  timer=setTimeout(next,c.type==='service'&&c.f===null?3600:c.type==='service'?3200:4500);}
+  timer=setTimeout(next,c.type==='service'&&c.f===null?3600:c.type==='service'?8200:4500);}
 document.getElementById('zNext').onclick=next;document.getElementById('zPrev').onclick=prev;
 document.getElementById('nextStep').onclick=next;document.getElementById('prevStep').onclick=prev;
 document.getElementById('nextSvc').onclick=nextSvc;document.getElementById('prevSvc').onclick=prevSvc;
