@@ -35,6 +35,8 @@ const SERVICES_SEED = [
   { name: "Zazzi Braids",     images: ["ZB1.jpg","ZB2.jpg","ZB3.jpg","ZB4.jpg","ZB5.jpg","ZB6.jpg"] },
   { name: "Afro Puffy Textured Curls",     images: ["Puffy1.jpg","Puffy2.jpg","Puffy3.jpg"] },
   { name: "Bohemian Body Curl",     images: ["BBCC1.jpg","BBCC2.jpg","BBCC3.jpg","BBCC4.jpg"] },
+  { name: "Bohemian Deep Curl",     images: ["BDC1.png","BDC2.png","BDC3.png","BDC4.png","BDC5.png"] },
+  { name: "Pixie Twists Premade",     images: ["PTP1.png","PTP2.png","PTP3.png","PTP4.png"] },
   { name: "Carribean Deep Wave",     images: ["CDW1.jpg","CDW2.jpg","CDW3.jpg"] },
   { name: "Island Curl",     images: ["IC1.jpg","IC2.jpg","IC3.jpg"] },
   { name: "Jamaican Curls Long",     images: ["JCL1.jpg","JCL2.jpg","JCL3.jpg"] },
